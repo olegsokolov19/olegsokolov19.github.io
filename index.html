@@ -18,12 +18,13 @@
 
         .container {
             background-color: #ffffff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
             text-align: center;
+            box-sizing: border-box; /* Важно для правильного расчета ширины */
         }
 
         h2 {
@@ -49,10 +50,13 @@
             outline: none;
             font-size: 16px;
             color: #333;
+            box-sizing: border-box; /* Учитываем отступы внутри элемента */
         }
 
         input[type="checkbox"] {
             margin-right: 10px;
+            transform: scale(1.2); /* Увеличиваем чекбокс для лучшей видимости */
+            vertical-align: middle; /* Выравниваем чекбокс по центру */
         }
 
         button {
@@ -82,23 +86,21 @@
             gap: 15px;
         }
 
-        /* Анимация для фокуса на поле */
-        input[type="text"]:focus {
-            border-color: #007bff;
-            background-color: #f0f8ff;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Дополнительные стили для checkbox */
         .checkbox-container {
             display: flex;
             align-items: center;
-            justify-content: left;
+            justify-content: flex-start;
         }
 
         .checkbox-label {
-            margin-left: 8px;
+            font-size: 16px;
             color: #555;
+            line-height: 1.5; /* Выравниваем текст по высоте чекбокса */
+        }
+
+        /* Скрыть клавиатуру при потере фокуса на телефонах */
+        input[type="text"]::placeholder {
+            color: #aaa;
         }
     </style>
 </head>
@@ -119,12 +121,19 @@
 </div>
 
 <script>
-    // Проверяем ввод данных, чтобы включить/отключить кнопку
+    // Проверка для включения/отключения кнопки
     const form = document.getElementById('userForm');
     const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('input', () => {
         submitBtn.disabled = !(document.getElementById('city').value && document.getElementById('age').checked);
+    });
+
+    // Скрытие клавиатуры на мобильных устройствах при потере фокуса
+    document.getElementById('city').addEventListener('blur', function() {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i)) {
+            document.activeElement.blur(); // Скрывает клавиатуру
+        }
     });
 
     // Обработка отправки формы
@@ -141,15 +150,16 @@
                 ageChecked: ageChecked
             }));
 
-            // Показываем сообщение об успехе
+            // Сообщение об успешной отправке
             alert('Данные отправлены! Ожидайте ответа в чате.');
         } else {
             alert('Пожалуйста, заполните все поля.');
         }
     });
 
-    // Инициализация WebApp для настройки стилей и размеров окна
+    // Инициализация Telegram WebApp
     Telegram.WebApp.ready();
+    Telegram.WebApp.expand();  // Автоматически разворачивает Web App на весь экран
 </script>
 </body>
 </html>
