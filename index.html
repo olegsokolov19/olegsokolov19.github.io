@@ -121,5 +121,46 @@
         <button type="submit">Отправить</button>
     </form>
 </div>
+<script>
+    // Проверка для включения/отключения кнопки
+    const form = document.getElementById('userForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('input', () => {
+        submitBtn.disabled = !(document.getElementById('city').value && document.getElementById('age').checked);
+    });
+
+    // Скрытие клавиатуры на мобильных устройствах при потере фокуса
+    document.getElementById('city').addEventListener('blur', function () {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i)) {
+            document.activeElement.blur(); // Скрывает клавиатуру
+        }
+    });
+
+    // Обработка отправки формы
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const city = document.getElementById('city').value;
+        const ageChecked = document.getElementById('age').checked;
+
+        if (ageChecked && city) {
+            // Отправка данных боту через Telegram Web App API
+            Telegram.WebApp.sendData(JSON.stringify({
+                city: city,
+                ageChecked: ageChecked
+            }));
+
+            // Сообщение об успешной отправке
+            alert('Данные отправлены! Ожидайте ответа в чате.');
+        } else {
+            alert('Пожалуйста, заполните все поля.');
+        }
+    });
+
+    // Инициализация Telegram WebApp
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();  // Автоматически разворачивает Web App на весь экран
+</script>
 </body>
 </html>
