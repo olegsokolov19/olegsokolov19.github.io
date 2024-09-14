@@ -1,0 +1,95 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f4f7;
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 0px;
+    display: block;
+    text-align: left;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box; /* Учитываем отступы внутри элемента */
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2); /* Увеличиваем чекбокс для лучшей видимости */
+    vertical-align: top; /* Выравниваем чекбокс по середине текста */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:disabled {
+    background-color: rgba(0, 123, 255, 0.5);
+    cursor: not-allowed;
+}
+
+button:hover:enabled {
+    background-color: #0056b3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: start;
+    margin-bottom: 20px; /* Отступ для улучшения визуального восприятия */
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Скрыть клавиатуру при потере фокуса на телефонах */
+input[type="text"]::placeholder {
+    color: #aaa;
+}

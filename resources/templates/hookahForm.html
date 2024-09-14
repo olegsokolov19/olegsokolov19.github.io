@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор параметров кальяна</title>
+    <link rel="stylesheet" href="/styles/hookahForm.css">
+</head>
+<body>
+<div class="container">
+    <h2>Выберите параметры кальяна</h2>
+    <form action="/submitHookahForm" method="post">
+        <label for="bowl">Выбор чаши:</label>
+        <select id="bowl" name="bowl" required>
+            <option value="" disabled selected>Выберите чашу</option>
+            <th:block th:each="bowl : ${bowls}">
+                <option th:value="${bowl}" th:text="${bowl}"></option>
+            </th:block>
+        </select>
+
+        <label for="tobacco">Марка табака:</label>
+        <select id="tobacco" name="tobacco" required>
+            <option value="" disabled selected>Выберите табак</option>
+            <th:block th:each="tobacco : ${tobaccos}">
+                <option th:value="${tobacco}" th:text="${tobacco}"></option>
+            </th:block>
+        </select>
+
+        <label for="strength">Крепость табака:</label>
+        <select id="strength" name="strength" required>
+            <option value="" disabled selected>Выберите крепость</option>
+            <th:block th:each="strength : ${strengths}">
+                <option th:value="${strength}" th:text="${strength}"></option>
+            </th:block>
+        </select>
+
+        <label for="flavor">Выберите вкусы:</label>
+        <select id="flavor" name="flavor" required>
+            <option value="" disabled selected>Выберите крепость</option>
+            <th:block th:each="flavor : ${flavors}">
+                <option th:value="${flavor}" th:text="${flavor}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+</body>
+</html>
