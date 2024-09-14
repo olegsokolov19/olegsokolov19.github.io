@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор параметров кальяна</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f7;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #0066cc;
+            border-bottom: 2px solid #cce5ff;
+            padding-bottom: 10px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            text-align: left;
+            color: #333;
+        }
+
+        select, input[type="checkbox"], button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        select {
+            padding: 12px;
+            border: 1px solid #cce5ff;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: rgba(0, 123, 255, 0.5);
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Выберите параметры кальяна</h2>
+    <form action="/submitHookahForm" method="post">
+        <label for="bowl">Выбор чаши:</label>
+        <select id="bowl" name="bowl" required>
+            <option value="" disabled selected>Выберите чашу</option>
+            <th:block th:each="bowl : ${bowls}">
+                <option th:value="${bowl}" th:text="${bowl}"></option>
+            </th:block>
+        </select>
+
+        <label for="tobacco">ДАНИЛ:</label>
+        <select id="tobacco" name="tobacco" required>
+            <option value="" disabled selected>Выберите табак</option>
+            <th:block th:each="tobacco : ${tobaccos}">
+                <option th:value="${tobacco}" th:text="${tobacco}"></option>
+            </th:block>
+        </select>
+
+        <label for="strength">Крепость табака:</label>
+        <select id="strength" name="strength" required>
+            <option value="" disabled selected>Выберите крепость</option>
+            <th:block th:each="strength : ${strengths}">
+                <option th:value="${strength}" th:text="${strength}"></option>
+            </th:block>
+        </select>
+
+        <label for="flavor">Выберите вкусы:</label>
+        <select id="flavor" name="flavor" required>
+            <option value="" disabled selected>Выберите крепость</option>
+            <th:block th:each="flavor : ${flavors}">
+                <option th:value="${flavor}" th:text="${flavor}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+</body>
+</html>
