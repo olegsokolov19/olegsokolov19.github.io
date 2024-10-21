@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Dasha Makeup - Заполни анкету</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        html, body {
+            overflow: hidden;
+        }
+
+        body {
+            background: #f0f0f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #widgetContainer {
+            transition: transform 0.7s ease, opacity 0.7s ease;
+        }
+
+        button {
+            padding: 14px;
+            background-color: #007ab8;
+            border: none;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.7s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #005f87;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #closeButton {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f0f0f5;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        Telegram.WebApp.expand();
+
+        function animateAndClose() {
+            const widget = document.getElementById('widgetContainer');
+            const button = document.getElementById('closeButton');
+
+            widget.style.transform = 'scale(0.7)';
+            widget.style.opacity = '0';
+            button.style.transform = 'scale(0.7)';
+            button.style.opacity = '0';
+
+            setTimeout(() => {
+                closeApp();
+            }, 700);
+        }
+
+        function closeApp() {
+            Telegram.WebApp.close();
+        }
+
+        document.body.addEventListener('click', function(event) {
+            if (event.target.tagName !== 'INPUT') {
+                document.activeElement.blur();
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="widgetContainer" style="width: 100%; max-width: 500px;">
+    <script id="37c9ca7e88529c295fe4c5f9c286184aa0c3f00b" src="https://makeupgerstner.getcourse.ru/pl/lite/widget/script?id=1286226"></script>
+</div>
+<div class="footer">
+    <button id="closeButton" onclick="animateAndClose()">Вернуться в Телеграм бота</button>
+</div>
+<script src="/scripts/main.js"></script>
+</body>
+</html>
